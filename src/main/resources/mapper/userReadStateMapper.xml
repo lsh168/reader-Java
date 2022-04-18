@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.sp.mapper.MemberReadStateMapper">
+<!--    <resultMap id="scoreStatisticsMap" type="Score">-->
+<!--        -->
+<!--    </resultMap>-->
+
+    <select id="selectReadStateByMap" resultType="com.lsh.sp.pojo.vo.UserReadState">
+        SELECT book_id bookId,read_state readState,COUNT(*) count
+        FROM member_read_state
+        WHERE book_id=#{bookId} AND read_state=#{readState}
+        GROUP BY book_id,read_state
+    </select>
+
+</mapper>
