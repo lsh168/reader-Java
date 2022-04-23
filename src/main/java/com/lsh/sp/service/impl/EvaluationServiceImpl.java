@@ -1,14 +1,17 @@
 package com.lsh.sp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.mapper.BookMapper;
 import com.lsh.sp.mapper.EvaluationMapper;
 import com.lsh.sp.mapper.MemberMapper;
 import com.lsh.sp.pojo.Book;
 import com.lsh.sp.pojo.Evaluation;
 import com.lsh.sp.pojo.Member;
+import com.lsh.sp.pojo.vo.EvaluationBookMemberVo;
 import com.lsh.sp.pojo.vo.ScoreStatistics;
 import com.lsh.sp.service.EvaluationService;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,5 +83,20 @@ public class EvaluationServiceImpl implements EvaluationService {
 
 
         return result;
+    }
+
+    @Override
+    public List<EvaluationBookMemberVo> selectEvaluationState() {
+        return evaluationMapper.selectEvaluationState();
+    }
+
+    @Override
+    public ResponseResult updateEvaluation(Evaluation evaluation) {
+        if (evaluation.getState().equals("disable")) {
+            evaluation.setDisableTime(new Date());
+        }
+        evaluationMapper.updateById(evaluation);
+        Evaluation result = evaluationMapper.selectById(evaluation.getEvaluationId());
+        return new ResponseResult(200,"success",result);
     }
 }

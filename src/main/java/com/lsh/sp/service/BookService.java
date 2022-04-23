@@ -1,6 +1,7 @@
 package com.lsh.sp.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.pojo.Book;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 public interface BookService {
     List<Book> findAllBook();
     IPage<Book> bookPage(Long categoryId,String order,Integer page,Integer rows);
-    Object scoreStatistics(Long bookId);
+//    查询热门图书
+    List<Book> findHotBook();
 
     /**
      * 分页查询图书
@@ -35,23 +37,23 @@ public interface BookService {
     /**
      * 更新图书评分/评价数量
      */
-    public void updateEvaluation();
+    void updateEvaluation();
     /**
      * 创建新的图书
      */
-    public Book createBook(Book book);
+    ResponseResult createBook(Book book);
 
     /**
      * 更新图书
      * @param book 新图书数据
      * @return 更新后的数据
      */
-    public Book updateBook(Book book);
+    Book updateBook(Book book);
 
-    /**
-     * 删除图书及相关数据
-     * @param bookId 图书编号
-     */
-    public void deleteBook(Long bookId);
-
+//    假删除
+    void deleteBook(Book book);
+//    回收站功能查询删除的数据
+    List<Book> selectDeletedBook();
+//    把删除的的图书进行恢复
+    Book updateBookDeleted(Book book);
 }

@@ -11,4 +11,7 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface BookMapper extends BaseMapper<Book> {
+//    更新图书评分
+    void updateEvaluation();
+
 }

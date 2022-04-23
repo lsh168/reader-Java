@@ -1,5 +1,6 @@
 package com.lsh.sp.mapper;
 
+import com.lsh.sp.pojo.vo.EvaluationBookMemberVo;
 import com.lsh.sp.pojo.vo.ScoreStatistics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,10 @@ class EvaluationMapperTest {
     void scoreStatistics() {
         List<ScoreStatistics> scoreStatistics = evaluationMapper.scoreStatistics((long) 1);
         System.out.println(scoreStatistics);
-
-
+    }
+    @Test
+    void evaluationBookMember(){
+        List<EvaluationBookMemberVo> evaluationBookMemberVos = evaluationMapper.selectEvaluationState();
+        System.out.println(evaluationBookMemberVos);
     }
 }

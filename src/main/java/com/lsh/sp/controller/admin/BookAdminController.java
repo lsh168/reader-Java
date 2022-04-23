@@ -1,6 +1,7 @@
 package com.lsh.sp.controller.admin;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.pojo.Book;
 import com.lsh.sp.service.BookService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,37 @@ import java.util.*;
 public class BookAdminController {
     @Autowired
     private BookService bookService;
+
+    @PostMapping("create")
+    public ResponseResult createBook(Book book){
+        return bookService.createBook(book);
+    }
+
+    @PostMapping("update")
+    public ResponseResult updateBook(Book book){
+        Book book1 = bookService.updateBook(book);
+        return new ResponseResult(200,"success",book1);
+    }
+//    假删除
+    @PostMapping("delete")
+    public ResponseResult deleteBook(Book book){
+        bookService.deleteBook(book);
+        return new ResponseResult(200,"success");
+    }
+//    查询删除的图书
+    @PostMapping("selectDeleted")
+    public ResponseResult selectDeleted(){
+        List<Book> books = bookService.selectDeletedBook();
+        return new ResponseResult(200,"success",books);
+    }
+//    恢复删除的图书
+    @PostMapping("updateDeleted")
+    public ResponseResult updateDeleted(Book book){
+        Book book1 = bookService.updateBookDeleted(book);
+        return new ResponseResult(200,"success",book1);
+    }
+
+
     @GetMapping("list")
     public Map bookList(){
         Map result=new HashMap();
@@ -36,7 +68,7 @@ public class BookAdminController {
         return result;
     }
 //    页数   每页的数据量
-    @GetMapping("pagebooks")
+    @PostMapping("pagebooks")
     public Map pageSelectBook(Integer page,Integer rows){
         if (page==null)page=1;
         if (rows==null)rows=10;

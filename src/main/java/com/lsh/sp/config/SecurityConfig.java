@@ -56,9 +56,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/book/categoryList").permitAll()
                 .antMatchers("/book/{bookId}").permitAll()
                 .antMatchers("/book/selectBooks").permitAll()
+
                 .antMatchers("/upload/*").anonymous()
 
                 .antMatchers("/book/upload").anonymous()
+                .antMatchers("/admin/pagebooks").permitAll()
+                .antMatchers("/admin/*").permitAll()
+                .antMatchers("/adminCategory/*").permitAll()
+                .antMatchers("/adminEvaluation/*").permitAll()
+                .antMatchers("/images/*").permitAll()
+
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
         //把token校验过滤器添加到过滤器链中

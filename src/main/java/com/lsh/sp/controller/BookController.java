@@ -11,10 +11,7 @@ import com.lsh.sp.service.EvaluationService;
 import com.lsh.sp.service.MemberService;
 import com.lsh.sp.utils.HTTPUserId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -93,8 +90,13 @@ public class BookController {
 
     @GetMapping("SelectReadState")
     public ResponseResult selectReadState(Long bookId){
-
         return memberService.selectReadStateByMap(bookId);
+    }
+//    热门图书
+    @PostMapping("selectHotBooks")
+    public ResponseResult selectHotBooks(){
+        List<Book> books = bookService.findHotBook();
+        return new ResponseResult(200,"success",books);
     }
 
 }

@@ -2,6 +2,7 @@ package com.lsh.sp.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lsh.sp.pojo.Evaluation;
+import com.lsh.sp.pojo.vo.EvaluationBookMemberVo;
 import com.lsh.sp.pojo.vo.ScoreStatistics;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,5 @@ import java.util.Map;
 @Repository
 public interface EvaluationMapper extends BaseMapper<Evaluation> {
     List<ScoreStatistics> scoreStatistics(Long bookId);
+    List<EvaluationBookMemberVo> selectEvaluationState();
 }

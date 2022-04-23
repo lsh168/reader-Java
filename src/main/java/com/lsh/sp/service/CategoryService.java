@@ -18,4 +18,5 @@ public interface CategoryService {
      * @return java.util.List<com.lsh.reader.pojo.Category>
     **/
     List<Category> selectAll();
+    void addCategory(Category category);
 }

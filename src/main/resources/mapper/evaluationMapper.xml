@@ -12,5 +12,10 @@
         ORDER BY e.score ASC
 
     </select>
+    <select id="selectEvaluationState" resultType="com.lsh.sp.pojo.vo.EvaluationBookMemberVo">
+        SELECT m.nickname,m.username,b.book_name,e.content,e.enjoy,e.score,e.create_time,e.disable_reason,e.disable_time,e.state,e.evaluation_id
+        FROM evaluation e,member m,book b
+        where e.member_id=m.member_id AND b.book_id=e.book_id
+    </select>
 
 </mapper>

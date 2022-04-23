@@ -1,6 +1,7 @@
 
 server:
   port: 8866
+  max-http-header-size: 102400
 
 spring:
   datasource:
@@ -12,6 +13,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd
+
 logging:
   level:
     com.lsh.sp:
@@ -21,7 +25,7 @@ logging:
 
 mybatis:
   configuration:
-      #    Êı¾İ¿â×Ö¶ÎÏÂ»®Ïß×ª»»³ÉÍÕ·å
+    #    æ•°æ®åº“å­—æ®µä¸‹åˆ’çº¿è½¬æ¢æˆé©¼å³°
     map-underscore-to-camel-case: true
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml

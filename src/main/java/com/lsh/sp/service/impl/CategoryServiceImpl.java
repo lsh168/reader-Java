@@ -1,6 +1,7 @@
 package com.lsh.sp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.mapper.CategoryMapper;
 import com.lsh.sp.pojo.Category;
 import com.lsh.sp.service.CategoryService;
@@ -21,5 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> selectAll() {
         return categoryMapper.selectList(new QueryWrapper<Category>());
+    }
+
+    @Override
+    public void addCategory(Category category) {
+        categoryMapper.insert(category);
     }
 }
