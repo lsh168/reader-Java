@@ -98,5 +98,12 @@ public class BookController {
         List<Book> books = bookService.findHotBook();
         return new ResponseResult(200,"success",books);
     }
+    @PostMapping("rankingBooks")
+    public ResponseResult rankingBooks(){
+        Map map = bookService.rankingList();
+        return new ResponseResult(200,"success",map);
+    }
+
+
 
 }

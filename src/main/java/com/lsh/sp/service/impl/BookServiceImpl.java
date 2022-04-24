@@ -18,7 +18,10 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service("bookService")
 public class BookServiceImpl implements BookService {
@@ -70,6 +73,39 @@ public class BookServiceImpl implements BookService {
         queryWrapper.orderByDesc("evaluation_score");
         List<Book> books = bookMapper.selectList(queryWrapper);
         return books;
+    }
+
+    @Override
+    public Map rankingList() {
+        Map data=new HashMap();
+//        高分图书
+        List<Book> heightBooks = findHotBook();
+        data.put("heightScoreBooks",heightBooks);
+//        人气图书
+        QueryWrapper<Book> hotBookQW=new QueryWrapper();
+        hotBookQW.orderByDesc("evaluation_quantity");
+        List<Book> hotBooks = bookMapper.selectList(hotBookQW);
+        data.put("hotBooks",hotBooks);
+//        本月本月排行榜
+        List<Book> monthBooks=new LinkedList<>();
+        List<Long> mbookIds = bookMapper.monthBookId();
+        for (Long bookId : mbookIds) {
+            Book book = bookMapper.selectById(bookId);
+            monthBooks.add(book);
+        }
+        data.put("monthBooks",monthBooks);
+//      年度排行榜
+        List<Book> yearBooks=new LinkedList<>();
+        List<Long> ybookIds = bookMapper.monthBookId();
+        for (Long bookId : ybookIds) {
+            Book book = bookMapper.selectById(bookId);
+            yearBooks.add(book);
+        }
+        data.put("yearBooks",yearBooks);
+
+
+
+        return data;
     }
 
 

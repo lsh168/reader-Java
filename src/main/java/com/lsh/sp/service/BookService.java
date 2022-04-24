@@ -5,6 +5,7 @@ import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.pojo.Book;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author luminous
@@ -16,6 +17,8 @@ public interface BookService {
     IPage<Book> bookPage(Long categoryId,String order,Integer page,Integer rows);
 //    查询热门图书
     List<Book> findHotBook();
+//  排行榜
+    Map rankingList();
 
     /**
      * 分页查询图书

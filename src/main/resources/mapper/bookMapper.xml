@@ -8,5 +8,19 @@
             select ifnull(count(*),0) from evaluation where book_id = b.book_id and state='enable'
             )
     </update>
+<!--    小于等于必须转义，否则会出错。-->
+<!--    结果类型是一条记录的结果类型-->
+    <select id="monthBookId" resultType="Long">
+        SELECT
+        DISTINCT b.book_id
+        FROM book b,evaluation e
+        where b.book_id=e.book_id AND DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(e.create_time)
+    </select>
+    <select id="yearBookId" resultType="Long">
+        select
+        DISTINCT book.book_id
+        from book LEFT JOIN evaluation ON book.book_id=evaluation.book_id
+        where YEAR(evaluation.create_time)=YEAR(NOW())
+    </select>
 
 </mapper>
