@@ -1,5 +1,6 @@
 package com.lsh.sp.mapper;
 
+import com.lsh.sp.pojo.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,5 +24,11 @@ class BookMapperTest {
         List list = bookMapper.yearBookId();
         System.out.println(list);
 
+    }
+
+    @Test
+    void userReadState() {
+        List<Book> books = bookMapper.userReadState(1, (long) 2);
+        System.out.println(books);
     }
 }

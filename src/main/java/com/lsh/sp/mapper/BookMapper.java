@@ -2,6 +2,7 @@ package com.lsh.sp.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lsh.sp.pojo.Book;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,5 +19,6 @@ public interface BookMapper extends BaseMapper<Book> {
 //   本月最热
     List<Long> monthBookId();
     List<Long> yearBookId();
+    List<Book> userReadState(@Param("readState") Integer readState, @Param("memberId") Long memberId);
 
 }

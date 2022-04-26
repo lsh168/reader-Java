@@ -108,6 +108,12 @@ public class BookServiceImpl implements BookService {
         return data;
     }
 
+    @Override
+    public List<Book> selectReadStateByUser(Integer readState, Long memberId) {
+        List<Book> books = bookMapper.userReadState(readState, memberId);
+        return books;
+    }
+
 
     /**
      * 分页查询图书

@@ -103,6 +103,13 @@ public class BookController {
         Map map = bookService.rankingList();
         return new ResponseResult(200,"success",map);
     }
+//    通过用户查询阅读状态
+    @PostMapping("selectReadStateByUser")
+    public ResponseResult selectReadStateByUser(HttpServletRequest request,Integer readState){
+        Long userId = HTTPUserId.getUserId(request);
+        List<Book> books = bookService.selectReadStateByUser(readState, userId);
+        return new ResponseResult(200,"success",books);
+    }
 
 
 

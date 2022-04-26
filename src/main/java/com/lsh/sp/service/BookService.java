@@ -19,6 +19,8 @@ public interface BookService {
     List<Book> findHotBook();
 //  排行榜
     Map rankingList();
+//    通过阅读状态查询图书
+    List<Book> selectReadStateByUser(Integer readState,Long memberId);
 
     /**
      * 分页查询图书

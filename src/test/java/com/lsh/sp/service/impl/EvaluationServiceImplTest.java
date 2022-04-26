@@ -1,5 +1,7 @@
 package com.lsh.sp.service.impl;
 
+import com.lsh.sp.pojo.Evaluation;
+import com.lsh.sp.pojo.Member;
 import com.lsh.sp.pojo.vo.ScoreStatistics;
 import com.lsh.sp.service.BookService;
 import com.lsh.sp.service.EvaluationService;
@@ -26,8 +28,10 @@ class EvaluationServiceImplTest {
 
     @Test
     void test() {
-        Map rankingList = bookService.rankingList();
-        System.out.println(rankingList);
+        Member member=new Member();
+        member.setMemberId((long) 2);
+        List<Evaluation> evaluations = evaluationService.selectByUser(member);
+        System.out.println(evaluations);
 
     }
 }

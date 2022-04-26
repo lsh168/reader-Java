@@ -86,6 +86,19 @@ public class EvaluationServiceImpl implements EvaluationService {
     }
 
     @Override
+    public List<Evaluation> selectByUser(Member member) {
+        QueryWrapper<Evaluation> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("member_id",member.getMemberId());
+        List<Evaluation> evaluations = evaluationMapper.selectList(queryWrapper);
+        return evaluations;
+    }
+
+    @Override
+    public void deleteEvaluation(Long id) {
+        evaluationMapper.deleteById(id);
+    }
+
+    @Override
     public List<EvaluationBookMemberVo> selectEvaluationState() {
         return evaluationMapper.selectEvaluationState();
     }

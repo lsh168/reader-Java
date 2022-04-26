@@ -22,5 +22,21 @@
         from book LEFT JOIN evaluation ON book.book_id=evaluation.book_id
         where YEAR(evaluation.create_time)=YEAR(NOW())
     </select>
+    <select id="userReadState" resultType="com.lsh.sp.pojo.Book">
+        SELECT b.book_id bookId,
+        b.book_name bookName,
+        b.sub_title subTitle,
+        b.author author,
+        b.cover cover,
+        b.description description,
+        b.category_id categoryId,
+        b.evaluation_score evaluationScore,
+        b.evaluation_quantity evaluationQuantity,
+        b.deleted deleted
+        FROM book b, member_read_state mrs
+        WHERE b.book_id=mrs.book_id
+        AND mrs.read_state=#{readState}
+        AND mrs.member_id=#{memberId}
+    </select>
 
 </mapper>
