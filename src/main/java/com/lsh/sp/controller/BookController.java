@@ -38,7 +38,7 @@ public class BookController {
     @Autowired
     private UserMapper userMapper;
 
-
+    //查询分类列表
     @GetMapping("categoryList")
     public Map categoryAll(){
         Map result=new HashMap();
@@ -46,13 +46,7 @@ public class BookController {
         result.put("categoryList",categoryList);
         return result;
     }
-    /**
-     * @Author luminous
-     * @Description //TODO 查看图书详情
-     * @Date 11:51 2022/1/13
-     * @param bookId:
-     * @return com.lsh.reader.pojo.Book
-    **/
+    //通过Id查询图书
     @GetMapping("{bookId}")
     public Map showDetail(@PathVariable("bookId") Long bookId, HttpServletRequest request){
         Map map=new HashMap();
@@ -87,7 +81,7 @@ public class BookController {
         IPage<Book> pageObject = bookService.paging(categoryId, order, page, 10);
         return pageObject;
     }
-
+    //查询阅读状态
     @GetMapping("SelectReadState")
     public ResponseResult selectReadState(Long bookId){
         return memberService.selectReadStateByMap(bookId);
@@ -98,6 +92,7 @@ public class BookController {
         List<Book> books = bookService.findHotBook();
         return new ResponseResult(200,"success",books);
     }
+//    图书排行榜
     @PostMapping("rankingBooks")
     public ResponseResult rankingBooks(){
         Map map = bookService.rankingList();

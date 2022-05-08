@@ -12,6 +12,7 @@ import com.lsh.sp.pojo.vo.UserReadState;
  * @Date 16:13 2022/1/12
  **/
 public interface MemberService {
+    ResponseResult findAllMember();
     ResponseResult selectReadStateByMap(Long bookId);
     /**
      * 会员注册,创建新会员

@@ -2,15 +2,13 @@ package com.lsh.sp.controller;
 
 import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.domain.User;
+import com.lsh.sp.pojo.vo.ResetUser;
 import com.lsh.sp.service.UserService;
 import com.lsh.sp.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -59,5 +57,27 @@ public class UserController {
         log.info("user={}",user);
 
         return userService.updateUserProfile(user);
+    }
+    @PostMapping("createUser")
+    public ResponseResult createUser(User user){
+        ResponseResult responseResult = userService.createUser(user);
+        return responseResult;
+    }
+    @PostMapping("forget")
+    public ResponseResult forget(ResetUser resetUser){
+//        @RequestParam("userName")String userName,@RequestParam("password") String password,@RequestParam("newPassword") String newPassword
+//        @RequestBody ResetUser resetUser
+//        ResetUser resetUser=new ResetUser();
+//        User user=new User();
+//        user.setUserName(userName);
+//        user.setPassword(password);
+//        resetUser.setNewPassword(newPassword);
+//        resetUser.setUser(user);
+        return userService.updatePassword(resetUser);
+    }
+
+    @PostMapping("findAllUser")
+    public ResponseResult findAllUser(){
+        return userService.selectAllUser();
     }
 }

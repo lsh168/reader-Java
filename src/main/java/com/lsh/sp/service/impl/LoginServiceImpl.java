@@ -61,7 +61,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public ResponseResult logout() {
         //获取securityContextHolder中的用户id
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         Long userid = loginUser.getUser().getId();
         //删除redis中的值

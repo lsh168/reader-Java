@@ -37,10 +37,6 @@ public class MemberServiceImpl implements MemberService {
     /**
      * 会员注册,创建新会员
      *
-     * @param username 用户名
-     * @param password 密码
-     * @param nickname 昵称
-     * @return 新会员对象
      */
 //    @Override
 //    public Member createMember(String username, String password, String nickname) {
@@ -61,6 +57,12 @@ public class MemberServiceImpl implements MemberService {
 //        memberMapper.insert(member);
 //        return member;
 //    }
+
+    @Override
+    public ResponseResult findAllMember() {
+        List<Member> members = memberMapper.selectList(null);
+        return new ResponseResult(200,"success",members);
+    }
 
     /**
      * 登录检查

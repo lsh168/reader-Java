@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author luminous
- * @Description //TODO
+ * @Description //获取请求头中的userId
  * @Date 21:37 2022/4/15
  **/
 

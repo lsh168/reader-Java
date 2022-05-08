@@ -210,13 +210,13 @@ public class BookServiceImpl implements BookService {
         bookMapper.updateById(book);
 //        bookMapper.deleteById(book);
 //        删除用户阅读状态
-        QueryWrapper<MemberReadState> q1=new QueryWrapper<MemberReadState>();
-        q1.eq("book_id",book.getBookId());
-        memberReadStateMapper.delete(q1);
-//        删除用户评论
-        QueryWrapper<Evaluation> evaluationQueryWrapper=new QueryWrapper<>();
-        evaluationQueryWrapper.eq("book_id",book.getBookId());
-        evaluationMapper.delete(evaluationQueryWrapper);
+//        QueryWrapper<MemberReadState> q1=new QueryWrapper<MemberReadState>();
+//        q1.eq("book_id",book.getBookId());
+//        memberReadStateMapper.delete(q1);
+////        删除用户评论
+//        QueryWrapper<Evaluation> evaluationQueryWrapper=new QueryWrapper<>();
+//        evaluationQueryWrapper.eq("book_id",book.getBookId());
+//        evaluationMapper.delete(evaluationQueryWrapper);
     }
 
     @Override

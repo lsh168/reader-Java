@@ -59,7 +59,7 @@ public class BookAdminController {
         return new ResponseResult(200,"success",book1);
     }
 
-
+    //查询可用的图书
     @GetMapping("list")
     public Map bookList(){
         Map result=new HashMap();
