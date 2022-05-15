@@ -35,7 +35,10 @@ public class TopicController {
 //    查询所有
     @GetMapping("list")
     public ResponseResult SelectTopic(){
-        List<Topic> list = topicService.list();
+//        List<Topic> list = topicService.list();
+        QueryWrapper<Topic> qw=new QueryWrapper<>();
+        qw.orderByDesc("createtime");
+        List<Topic> list = topicService.list(qw);
 //        QueryWrapper<Comment> queryWrapper=new QueryWrapper<>();
 //
 //        for (Topic t : list) {
@@ -66,10 +69,13 @@ public class TopicController {
         topic.setThumbup(0L);
         topic.setVisits(0L);
         topic.setUserid(userId);
+        ResponseResult responseResult = userService.userInfo(userId);
+        User data = (User) responseResult.getData();
+        topic.setUser(data);
         boolean save = topicService.save(topic);
         if (!save)
             return new ResponseResult(300,"插入失败！");
-        return new ResponseResult(200,"success");
+        return new ResponseResult(200,"success",topic);
     }
 //    传入内容，传入id，
     @PostMapping("update")

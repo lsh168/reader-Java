@@ -64,14 +64,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseResult updatePassword(ResetUser resetUser) {
 //        加密后的旧密码
-        String encode = passwordEncoder().encode(resetUser.getPassword());
+        String oldPass = passwordEncoder().encode(resetUser.getPassword());
+        String newPass = passwordEncoder().encode(resetUser.getNewPassword());
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("user_name", resetUser.getUserName()));
         //查询用户是否存在
         if (user!=null){
-            if (user.getPassword().equals(encode)){
-                resetUser.setPassword(passwordEncoder().encode(resetUser.getNewPassword()));
+//            if (user.getPassword().equals(oldPass)){
+                user.setPassword(newPass);
                 userMapper.updateById(user);
-            }
+//            }
         }
         else new RuntimeException("用户不存在！");
         return new ResponseResult(200,"success");

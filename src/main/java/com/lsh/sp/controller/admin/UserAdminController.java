@@ -22,6 +22,5 @@ public class UserAdminController {
     @PostMapping("update")
     public ResponseResult updateUser(User user){
         return userService.updateUserProfile(user);
-
     }
 }

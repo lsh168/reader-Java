@@ -1,5 +1,6 @@
 package com.lsh.sp.controller;
 
+import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.pojo.Evaluation;
 import com.lsh.sp.pojo.Member;
 import com.lsh.sp.service.MemberService;
@@ -26,6 +27,15 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+
+
+    //会员状态禁用
+    @PostMapping("updateStatus")
+    public ResponseResult updateStatus(Member member){
+        ResponseResult result = memberService.updateStatus(member);
+        return result;
+    }
 
 
 

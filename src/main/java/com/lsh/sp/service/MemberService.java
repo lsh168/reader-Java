@@ -12,6 +12,8 @@ import com.lsh.sp.pojo.vo.UserReadState;
  * @Date 16:13 2022/1/12
  **/
 public interface MemberService {
+    ResponseResult updateStatus(Member member);
+
     ResponseResult findAllMember();
     ResponseResult selectReadStateByMap(Long bookId);
     /**

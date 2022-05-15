@@ -4,6 +4,7 @@ import com.lsh.sp.domain.ResponseResult;
 import com.lsh.sp.domain.User;
 import com.lsh.sp.pojo.vo.ResetUser;
 import com.lsh.sp.service.UserService;
+import com.lsh.sp.utils.HTTPUserId;
 import com.lsh.sp.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +65,9 @@ public class UserController {
         return responseResult;
     }
     @PostMapping("forget")
-    public ResponseResult forget(ResetUser resetUser){
+    public ResponseResult forget( ResetUser resetUser){
+
+
 //        @RequestParam("userName")String userName,@RequestParam("password") String password,@RequestParam("newPassword") String newPassword
 //        @RequestBody ResetUser resetUser
 //        ResetUser resetUser=new ResetUser();

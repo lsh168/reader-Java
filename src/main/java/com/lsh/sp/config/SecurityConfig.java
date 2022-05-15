@@ -57,10 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/login").anonymous()
                 .antMatchers("/user/forget").anonymous()
                 .antMatchers("/verify_code").anonymous()
+                .antMatchers("/images/*").anonymous()
 
                 .antMatchers("/book/categoryList").permitAll()
                 .antMatchers("/book/{bookId}").permitAll()
                 .antMatchers("/book/selectBooks").permitAll()
+                .antMatchers("/user/forget").permitAll()
 
                 .antMatchers("/upload/*").anonymous()
 

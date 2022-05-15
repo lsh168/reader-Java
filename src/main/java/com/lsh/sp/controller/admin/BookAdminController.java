@@ -82,7 +82,7 @@ public class BookAdminController {
     }
 
     @PostMapping(value = "upload")
-    public Map upload(@RequestPart("file") MultipartFile file,
+    public Map upload(@RequestPart(value = "file",required = false) MultipartFile file,
                       @RequestPart(value = "files",required = false)MultipartFile[] files,
                       HttpSession session,
                       HttpServletRequest request) throws IOException {
@@ -108,7 +108,8 @@ public class BookAdminController {
 
         Map result = new HashMap();
         //单文件上传
-        if (!file.isEmpty()){
+        if (file!=null){
+//        if (!file.isEmpty()){
             //获取文件名
             String filename = file.getOriginalFilename();
             System.out.println(filename);

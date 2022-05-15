@@ -23,4 +23,5 @@ public class Member {
     private String nickname;
     private Date createTime;
     private String avatar;
+    private char status;
 }

@@ -34,6 +34,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private BookMapper bookMapper;
+
+    @Override
+    public ResponseResult updateStatus(Member member) {
+        if (member==null)
+            throw new RuntimeException("会员对象为空");
+        memberMapper.updateById(member);
+        return new ResponseResult(200,"success",member);
+    }
+
     /**
      * 会员注册,创建新会员
      *
