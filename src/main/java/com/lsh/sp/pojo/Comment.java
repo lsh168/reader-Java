@@ -1,8 +1,10 @@
 package com.lsh.sp.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lsh.sp.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +40,8 @@ public class Comment {
     private Integer praiseNum;
     private Integer topStatus;
     private Timestamp createTime;
+
+    @TableField(exist = false)
+    private User user;
 
 }

@@ -64,7 +64,7 @@ public class TopicController {
     @PostMapping("insert")
     public ResponseResult insert(HttpServletRequest request,Topic topic){
         Long userId = HTTPUserId.getUserId(request);
-        topic.setCreatetime(new Date());
+        topic.setCreatetime(new Date(System.currentTimeMillis()));
         topic.setReply(0L);
         topic.setThumbup(0L);
         topic.setVisits(0L);
@@ -88,5 +88,12 @@ public class TopicController {
     public ResponseResult delete(Topic topic){
         topicService.removeById(topic);
         return new ResponseResult(200,"");
+    }
+//    点赞
+    @PostMapping("enjoy")
+    public ResponseResult enjoy(Topic topic){
+        topic.setThumbup(topic.getThumbup()+1);
+        topicService.saveOrUpdate(topic);
+        return new ResponseResult(200,"点赞成功！",topic);
     }
 }

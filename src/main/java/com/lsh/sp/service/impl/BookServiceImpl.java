@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService {
         data.put("monthBooks",monthBooks);
 //      年度排行榜
         List<Book> yearBooks=new LinkedList<>();
-        List<Long> ybookIds = bookMapper.monthBookId();
+        List<Long> ybookIds = bookMapper.yearBookId();
         for (Long bookId : ybookIds) {
             Book book = bookMapper.selectById(bookId);
             yearBooks.add(book);
